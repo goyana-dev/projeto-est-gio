@@ -1,6 +1,6 @@
 # Portal Curricular - EEEP Maria Carmem Vieira Moreira
 
-Sistema web desenvolvido para auxiliar na organização acadêmica e logística escolar da EEEP Maria Carmem Vieira Moreira.
+Sistema web desenvolvido para auxiliar na organização técnica e logística escolar da EEEP Maria Carmem Vieira Moreira.
 
 O projeto tem como objetivo apresentar os cursos técnicos da instituição, suas grades curriculares e permitir o gerenciamento das informações através de uma área administrativa com funcionalidades CRUD.
 
