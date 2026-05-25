@@ -95,4 +95,9 @@ Este projeto foi desenvolvido com fins educacionais e práticos, buscando melhor
 
 # Desenvolvedores
 
-Projeto desenvolvido por Isaac Goyana Barreto,Vinicius Dias Ferreira,Pedro Victor Pereira Leal Souza,Matheus Iarlei Pereira Feitosa,Pedro Henrique Vieira dos Santos.
+Projeto desenvolvido por:
+- Isaac Goyana Barreto
+- Vinicius Dias Ferreira
+- Pedro Victor Pereira Leal Souza
+- Matheus Iarlei Pereira Feitosa
+- Pedro Henrique Vieira dos Santos.
