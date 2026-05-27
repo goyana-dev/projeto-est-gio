@@ -17,7 +17,7 @@ function cadastrarAdministrador(){
         mensagem.innerText =
         "Preencha todos os campos";
 
-        mensagem.style.color = "#000000";
+        mensagem.style.color = "#7f0606";
 
         return;
     }
@@ -29,7 +29,7 @@ function cadastrarAdministrador(){
 
             mensagem.innerText =
             "Usuário já cadastrado";
-            mensagem.style.color = "#000000";
+            mensagem.style.color = "#7f0606";
 
             return;
         }

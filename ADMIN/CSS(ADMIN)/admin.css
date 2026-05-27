@@ -7,12 +7,14 @@
 
 /* BODY */
 body{
+    background-image: url('https://i.postimg.cc/C53GSGyn/e8bcd4a0f7e5d4f014e1a83bab68e63a.png');
+    background-size: cover;
 
     font-family: montserrat, sans-serif;
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background: #708A58;
+    
     color:  #FFB823;
 }
 
@@ -103,10 +105,27 @@ button:hover{
     text-align: center;
 }
 .container{
+
     display: flex;
+
+    justify-content: center;
+
     flex-direction: column;
-    background: #FFF1CA;
+
+    margin-top: 150px;
+
+
+    backdrop-filter: blur(8px);
+
     padding: 20px;
+
     border-radius: 10px;
-    box-shadow: 8px 8px 8px 8px rgba(255, 237, 237, 0.1);
+
+    box-shadow: 8px 8px 8px 8px
+    rgba(255, 237, 237, 0);
+
+}
+.btn-senha{
+    background:none;
+    color: black;
 }

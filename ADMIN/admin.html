@@ -11,6 +11,8 @@
 
     <link rel="stylesheet"
     href="CSS(ADMIN)/admin.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -32,19 +34,26 @@
 
         <!-- INPUT SENHA -->
         <label for="senha">
-            Senha
-        </label>
 
-        <input
+              <div class = "senhabox">
+            Senha
+             <input
         type="password"
         id="senha"
         placeholder="Digite a senha">
+        <button type = "button" onclick="MostrarSenha()" class="btn-senha">
+                  <i class="fa-solid fa-eye"></i>
+        </button>
+        </div>
+        </label>
+
+      
+       
+        </div>
 
         <!-- BOTÃO -->
         <button onclick="cadastrarAdministrador()">
-
             Cadastrar
-
         </button>
 
         <!-- MENSAGEM -->
