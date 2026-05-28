@@ -17,8 +17,10 @@ function cadastrarAdministrador(){
         mensagem.innerText =
         "Preencha todos os campos";
 
-        mensagem.style.color = "#7f0606";
-
+        mensagem.style.color = "#ffffff";
+        mensagem.style.backgroundColor = "#2D4F2B";
+        mensagem.style.height = "30px";
+        mensagem.style.borderRadius = "7px";
         return;
     }
 
@@ -29,7 +31,10 @@ function cadastrarAdministrador(){
 
             mensagem.innerText =
             "Usuário já cadastrado";
-            mensagem.style.color = "#7f0606";
+            mensagem.style.color = "#ffffff";
+            mensagem.style.backgroundColor = "#2D4F2B";
+            mensagem.style.height = "30px";
+            mensagem.style.borderRadius = "7px";
 
             return;
         }
@@ -48,6 +53,10 @@ function cadastrarAdministrador(){
     `Usuário ${usuario} cadastrado com sucesso`;
 
     mensagem.style.color = "#D28F01";
+    mensagem.style.backgroundColor = "#2D4F2B";
+    mensagem.style.padding = "6px";
+    mensagem.style.height = "30px";
+    mensagem.style.borderRadius = "7px";
 }
 function MostrarSenha(){
 
