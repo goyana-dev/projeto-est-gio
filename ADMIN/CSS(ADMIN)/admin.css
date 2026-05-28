@@ -4,10 +4,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root{
+    --bege: #FFF1CA;
+
+    --verde: #708A58;
+
+    --verde-escuro: #2D4F2B;
+
+    --dourado: #FFB823;
+
+    --texto: #203A1F;
+
+}
 
 /* BODY */
 body{
-    background-image: url('https://i.postimg.cc/C53GSGyn/e8bcd4a0f7e5d4f014e1a83bab68e63a.png');
+    background-image: url('https://i.postimg.cc/DZbR0rjg/f72bd1dbb5c94cf38ccbc0ba675aff92.png');
     background-size: cover;
 
     font-family: montserrat, sans-serif;
@@ -42,6 +54,7 @@ label{
 }
 
 /* INPUTS */
+
 #usuario,
 #senha{
 
@@ -49,13 +62,17 @@ label{
 
     padding: 10px;
 
+    padding-right: 40px;
+
     border-radius: 5px;
 
     border: none;
 
     outline: none;
 
+    
 }
+
 #usuario:focus,
 #senha:focus{
     outline: none;
@@ -115,7 +132,7 @@ button:hover{
     margin-top: 150px;
 
 
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(2.5px);
 
     padding: 20px;
 
@@ -125,7 +142,35 @@ button:hover{
     rgba(255, 237, 237, 0);
 
 }
+/* BOTÃO OLHO */
 .btn-senha{
-    background:none;
-    color: black;
+
+    position: absolute;
+
+    top: 30%;
+
+    right: 12px;
+
+   
+
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+
+    margin: 0;
+
+    width: auto;
+
+    color: #2D4F2B;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+.senhabox{
+    position:relative;
+    width:100%;
 }

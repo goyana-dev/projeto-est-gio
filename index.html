@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <header>
+  <body class="fade-in"></body>
+    <header id="home">
         <div class="logo">
             <h1>Portal Curricular</h1>
         </div>
@@ -15,15 +16,15 @@
         <nav class="navbar">
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#contact">Contato</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <a href="/ADMIN/admin.html">
-        <button class="btn-admin">Login</button>
-        </a>
+          <button class="btn-admin" onclick="abrirLogin()">
+                  Login
+           </button>
     </header>
-    <section class="intro"
+    <section class="intro">
       <div class="intro-txt">
      
 
@@ -34,7 +35,7 @@
       <button class="btn-explore">Explorar cursos</button>
        </div>
        <div class="intro-img">
-        <img src="" alt="">
+        <img src= "/IMG/eeepimg.jpg" alt="Imagem ilustrativa da escola" class = "img-intro">
        </div>
     
     </section>
@@ -48,7 +49,7 @@
       <!-- CARD ADS -->
       <article class="card">
         <img src="/IMG/Simbol DS.png" alt="Símbolo do curso de Desenvolvimento de Sistemas">
-        <h3 id="ds">Desenvolvimento de Sistemas</h3>
+        <h3>Desenvolvimento de Sistemas</h3>
 
         <p>
           Formação voltada para programação,
@@ -111,15 +112,19 @@
     </div>
 
   </section>
-        
-        </p>
+  <section id="contato" class="contato">
 
-        <button>Ver Grade Curricular</button>
+    <h2>Contato</h2>
 
-      </article>
+    <p>
+      Para dúvidas ou mais informações, entre em contato conosco:
+    </p>
 
-    </div>
-
+    <ul>
+      <li>Email: </li>
+      <li>Telefone: </li>
+      <li>Endereço: </li>
+    </ul>
   </section>
 
   <!-- SOBRE -->
@@ -140,13 +145,15 @@
   <footer class="footer">
 
     <p>
-      © 2026 - EEEP Maria Carmem Vieira Moreira
+      © 2026 - Quinteto Fantástico. Todos os direitos reservados.
+      Desenvolvido por:<br>
+      Vinicius Dias Ferreira, Matheus Iarlei Pereira Feitosa, Isaac Goyana Barreto, Pedro Henrique Vieira , Pedro Victor Leal.
     </p>
 
   </footer>
 
+  <div class="transition-screen"></div>
   <script src="js/main.js"></script>
-
 
 </body>
 </html>

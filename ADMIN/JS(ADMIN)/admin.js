@@ -47,5 +47,28 @@ function cadastrarAdministrador(){
     mensagem.innerText =
     `Usuário ${usuario} cadastrado com sucesso`;
 
-    mensagem.style.color = "#FFF1CA";
+    mensagem.style.color = "#D28F01";
+}
+function MostrarSenha(){
+
+    const senha = document.getElementById("senha");
+
+    const icone = document.getElementById("iconeSenha");
+
+    if(senha.type === "text"){
+
+        senha.type = "password";
+
+        icone.classList.remove("fa-eye");
+
+        icone.classList.add("fa-eye-slash");
+
+    }else{
+
+        senha.type = "text";
+
+        icone.classList.remove("fa-eye-slash");
+
+        icone.classList.add("fa-eye");
+    }
 }
