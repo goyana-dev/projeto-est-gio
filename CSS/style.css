@@ -1,14 +1,12 @@
 /*RESET*/
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
 :root{
     --bege: #FFF1CA;
     --verde: #708A58;
-    --verde-escuro: #2D4F2B;
+    --verde-escuro: #194517;
     --dourado: #FFB823;
     --texto: #203A1F;
 }
@@ -92,6 +90,24 @@ header{
     transform: scale(1.05);
     background-color: #e6a600;
 }
+.btn-login{
+      background-color: var(--dourado);
+    color: var(--verde-escuro);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display:inline-block;
+    text-decoration: none;
+}
+.btn-login:hover{
+    transform: scale(1.05);
+    background-color: #e6a600;
+}
+
+
 /* BOTÃO EXPLORAR */
 .btn-explore{
     background: linear-gradient(
