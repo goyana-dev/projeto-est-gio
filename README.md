@@ -1,4 +1,9 @@
 # Portal Curricular - EEEP Maria Carmem Vieira Moreira
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 Sistema web desenvolvido para auxiliar na organização técnica e logística escolar da EEEP Maria Carmem Vieira Moreira.
 
@@ -78,18 +83,6 @@ git clone https://github.com/seuusuario/seurepositorio.git
 # Objetivo do Projeto
 
 Este projeto foi desenvolvido com fins educacionais e práticos, buscando melhorar a organização das informações acadêmicas da escola e também aprimorar conhecimentos em desenvolvimento web.
-
----
-
-# Melhorias Futuras
-
-- Sistema de login administrativo
-- Integração com banco de dados
-- API para gerenciamento dos cursos
-- Sistema de pesquisa
-- Modo escuro/claro
-- Responsividade avançada
-- Deploy online
 
 ---
 
