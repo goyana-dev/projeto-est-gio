@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto </title>
     <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
   <body class="fade-in">
     <header id="home">
@@ -14,7 +16,7 @@
       
    <nav class="navbar">
     <ul>
-        <li><a href="#home">Home</a></li>
+        <li><a href="#intro">Home</a></li>
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#contato">Contato</a></li>
 
@@ -37,9 +39,7 @@
 
       <button class="btn-explore">Explorar cursos</button>
        </div>
-       <div class="intro-img">
        <img src= "IMG/livros.png" alt="Livros" class = "img-intro">
-       </div>
     
     </section>
      <!-- CURSOS -->
@@ -49,22 +49,15 @@
 
     <div class="cards-cursos">
 
-      <!-- CARD ADS -->
-      <article class="card">
-        <h3>Desenvolvimento de Sistemas</h3>
-        <img src="/IMG/" alt="Símbolo do curso de Desenvolvimento de Sistemas">
-        <p>
-          Formação voltada para programação,
-          banco de dados e desenvolvimento web.
-        </p>
-
-        <button>Ver curso</button>
-      </article>
+    
 
       <!-- CARD QUÍMICA -->
       <article class="card">
         <h3>Química</h3>
-        <img src="/IMG/Simbol qui.svg" alt="Símbolo do curso de Química">
+         <div class="linha"></div>
+        <div class="icon-circle">
+          <i class="fa-solid fa-flask card-icon"></i>
+        </div>
 
         <p>
           Estudos laboratoriais, indústria química
@@ -77,8 +70,10 @@
       <!-- CARD LOGÍSTICA -->
       <article class="card">
         <h3>Logística</h3>
-        <img src="IMG/" alt="Símbolo do curso de Logística">
-
+          <div class="linha"></div>
+        <div class="icon-circle">
+       <i class="fa-solid fa-truck-fast card-icon"></i>
+        </div>
         <p>
           Gestão de estoque, transporte
           e cadeia de suprimentos.
@@ -86,11 +81,25 @@
 
         <button>Ver curso</button>
       </article>
+<!-- CARD ADS -->
+      <article class="card">
+        <h3>Desenvolvimento de Sistemas</h3>
+        <div class="icon-circle">
+         <i class="fa-solid fa-code card-icon"></i>
+         </div>
+        <p>
+          Formação voltada para programação,
+          banco de dados e desenvolvimento web.
+        </p>
 
+        <button>Ver curso</button>
+      </article>
      <!-- CARD TÊXTIL -->
       <article class="card">
         <h3>Têxtil</h3>
-        <img src="IMG/" alt="Símbolo do curso de Têxtil">
+        <div class="icon-circle">
+         <i class="fa-solid fa-shirt card-icon"></i>
+         </div>
 
         <p>
           Produção têxtil, fibras,
@@ -102,7 +111,10 @@
      <!-- CARD SECRETARIADO -->
       <article class="card">
         <h3>Secretariado</h3>
-        <img src="IMG/Simbol sec.png" alt="Símbolo do curso de Secretariado">
+         <div class="linha"></div>
+        <div class="icon-circle">
+        <i class="fa-solid fa-folder-open card-icon"></i>
+        </div>
 
         <p>
           Atendimento ao público, organização de documentos,
@@ -114,6 +126,28 @@
     </div>
 
   </section>
+  <!-- BENEFÍCIOS -->
+  <section class="beneficios">
+
+  <div>
+    <i class="fas fa-award"></i>
+    <h3>Educação de Qualidade</h3>
+    <p>Professores experientes e metodologia eficiente.</p>
+  </div>
+
+  <div>
+    <i class="fas fa-building"></i>
+    <h3>Estrutura Completa</h3>
+    <p>Laboratórios modernos para o aprendizado.</p>
+  </div>
+
+  <div>
+    <i class="fas fa-briefcase"></i>
+    <h3>Mercado de Trabalho</h3>
+    <p>Cursos alinhados às demandas atuais.</p>
+  </div>
+
+</section>
   <!-- SOBRE -->
   <section id="sobre" class="sobre">
 
@@ -142,24 +176,7 @@
   </section>
 
   
-<section class="beneficios">
 
-  <div>
-    <h3>Educação de Qualidade</h3>
-    <p>Professores experientes e metodologia eficiente.</p>
-  </div>
-
-  <div>
-    <h3>Estrutura Completa</h3>
-    <p>Laboratórios modernos para o aprendizado.</p>
-  </div>
-
-  <div>
-    <h3>Mercado de Trabalho</h3>
-    <p>Cursos alinhados às demandas atuais.</p>
-  </div>
-
-</section>
   <!-- FOOTER -->
   <footer class="footer">
 

@@ -6,19 +6,20 @@
     scroll-behavior: smooth;
 }
 :root{
-  
-    --bege: #F7F3E8;
-    --verde: #3B6B2A;
-    --verde-escuro: #1F4A1D;
-    --dourado: #D9A520;
-    --texto: #1D2F1D;
-
+    --bege-fundo: #F6F0DE;
+    --bege-escuro: #EFE4BE;
+    --verde: #2F6B2D;
+    --verde-botao: #3E6E25;
+    --verde-escuro: #1D4D1C;
+    --texto-escuro: #203320;
+    --dourado: #D6A624;
+    --branco-cards: #FFFFFF;
+    --borda-cards: #E6DEC7;
 }
 body{
-    background-color: var(--bege);
-    color: var(--texto);
-    font-family: Arial, sans-serif;
-   
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bege-fundo);
+    color: var(--texto-escuro);
 }
 header{
     background: linear-gradient(
@@ -31,7 +32,6 @@ header{
     align-items: center;
     padding: 20px 40px;
     box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 20px 20px;
     position:sticky;
     top:0;
     z-index:1000;
@@ -51,7 +51,6 @@ header{
 .navbar{
     position: relative;
 }
-
 .navbar ul{
     position: relative;
     display: flex;
@@ -59,11 +58,9 @@ header{
     list-style: none;
     align-items: center;
 }
-
 .navbar li{
     position: relative;
 }
-
 .navbar a{
     position: relative;
     text-decoration: none;
@@ -73,29 +70,21 @@ header{
     padding: 10px 0;
     transition: color .3s ease;
 }
-
 .navbar a:hover{
     color: var(--dourado);
 }
-
 .navbar a.ativo{
     color: var(--dourado);
 }
-
 /* Linha deslizante */
 .indicator{
     position: absolute;
-
     bottom: -8px;
     left: 0;
-
     width: 0;
     height: 3px;
-
     background: var(--dourado);
-
     border-radius: 999px;
-
     transition:
         left .3s ease,
         width .3s ease;
@@ -105,20 +94,16 @@ header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    min-height: 70vh;
+    background: var(--bege-escuro);
+    min-height: 500px;
     padding:80px 100px;
-    margin:0;
-
-    background:#F5F0E4;
-
-    border-radius:0;
+    border-radius:60px;
     box-shadow:none;
 }
 /* TEXTO INTRO */
 .intro-txt{
     width: 50%;
 }
-
 .intro-txt h2{
     font-size: 4rem;
     line-height: 1.2;
@@ -133,7 +118,6 @@ header{
     background:var(--dourado);
     margin-top:15px;
 }
-
 .intro-txt p{
     font-size: 1.4rem;
     max-width: 600px;
@@ -151,10 +135,10 @@ header{
     display:inline-block;
     text-decoration: none;
 }
-
-.btn-admin:hover{
+.btn-admin:hover,
+.btn-login:hover{
     transform: scale(1.05);
-    background-color: #e6a600;
+    background-color: #E0B032;
 }
 .btn-login{
       background-color: var(--dourado);
@@ -172,46 +156,36 @@ header{
     transform: scale(1.05);
     background-color: #e6a600;
 }
-
-
 /* BOTÃO EXPLORAR */
 .btn-explore{
     display: inline-flex;
     align-items: center;
     gap: 10px;
     margin-top: 25px;
-
     background: linear-gradient(
         90deg,
         var(--verde),
         var(--verde-escuro)
     );
-
     color: white;
     border: none;
-
     padding: 16px 28px;
-
     border-radius: 15px;
-
     font-size: 1rem;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
-
 .btn-explore:hover{
     transform: scale(1.05);
     background: var(--dourado);
     color: var(--verde-escuro);
 }
 .cursos{
-    background: white;
-    border-radius: 40px 40px 0 0;
-    margin-top: -30px;
+    background: var(--branco-cards);
+    margin-top: -60px;
     position:relative;
+    z-index:2;
     padding: 40px;
 }
 /* GRID CARDS */
@@ -224,66 +198,85 @@ header{
 /* cursos */
 .cursos h2{
     text-align:center;
-
     font-size:3rem;
-
     margin-bottom:50px;
-
     color:var(--verde-escuro);
 }
 .cursos h2::after{
     content:"";
     display:block;
-
-    width:180px;
+    width:60px;
     height:3px;
-
     background:var(--dourado);
-
     margin:15px auto 0;
 }
 /* CARDS */
+.cards-cursos{
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: stretch;
+    transition: 0.3s;
+}
 .card{
-    
-    background: white;
-    width: 280px;
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    min-height: 350px;
     padding: 30px;
+    background: var(--branco-cards);
+    border: 1px solid var(--borda-cards);
     border-radius: 20px;
     text-align: center;
-    border: 1px solid #e6ddc5;
     box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    transition: 0.3s;
+    transition: .3s;
+}
+.card p{
+    flex-grow: 1;
 }
 .card:hover{
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 /* IMAGEM CARD */
-.card img{
-    width:90px;
-    height:90px;
-
-    display:block;
-
-    margin:0 auto 20px;
-
-    padding:15px;
-
-    background:linear-gradient(
+.icon-circle{
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
         135deg,
         var(--verde),
         var(--verde-escuro)
     );
-
-    border-radius:50%;
+    border-radius: 50%;
+}
+.beneficios i{
+    color: var(--dourado);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.icon-circle i{
+    justify-content: center;
+    align-items: center;
+    color:#e6a600;
+    font-size: 2.5rem;
+    line-height: 1;
 }
 /* TÍTULO  CARD*/
 .card h3{
+    height: 70px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     margin-bottom: 15px;
 }
 /* TEXTO CARD */
-
 .card p{
     margin-bottom: 20px;
     line-height: 1.5;
@@ -291,14 +284,12 @@ header{
 /* BOTÃO CARD */
 .card button{
     width:100%;
-    margin-top:15px;
-
+    margin-top:auto;
     background:linear-gradient(
         90deg,
-        var(--verde),
+        var(--verde-botao),
         var(--verde-escuro)
     );
-
     color:white;
     border:none;
     padding:12px;
@@ -307,29 +298,33 @@ header{
     font-weight:bold;
     transition:.3s;
 }
-
+.beneficios{
+    background: linear-gradient(
+        90deg,
+        var(--verde-botao),
+        var(--verde-escuro)
+    );
+}
 /* SOBRE */
 .sobre{
     padding: 60px;
     text-align: center;
 }
-
 .sobre h2{
     margin-bottom: 20px;
     font-size: 2rem;
     color: var(--verde-escuro);
 }
-
 .sobre p{
     max-width: 800px;
     margin: auto;
     line-height: 1.8;
 }
 .footer{
-     background: linear-gradient(
-    90deg,
-    var(--verde),
-    var(--verde-escuro)
+    background: linear-gradient(
+        90deg,
+        #1D4D1C,
+        #245A22
     );
      color: white;
      text-align: center;
@@ -338,11 +333,8 @@ header{
      border-radius: 20px 20px 0 0;
 }
 @media(max-width: 768px){
-
     header{
-
         flex-direction: column;
-
         gap: 20px;
     }
     .card{
@@ -350,31 +342,22 @@ header{
     max-width:350px;
 }
     .intro{
-
         flex-direction: column;
-
         text-align: center;
     }
-
     .intro-txt{
-
         width: 100%;
     }
-
     .cards-cursos{
-
         flex-direction: column;
-
         align-items: center;
     }
     .intro-img{
     width:100%;
 }
-
 .intro-txt h2{
     font-size:2.5rem;
 }
-
 .intro-txt p{
     font-size:1.1rem;
 }
@@ -388,38 +371,25 @@ header{
     width:100%;
     max-width:650px;
     height:400px;
-
     object-fit:cover;
-
     border-radius:30px;
-
     box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 .contato{
-
     padding: 60px;
-
     text-align: center;
 }
-
 .contato h2{
-
     font-size: 2rem;
-
     margin-bottom: 20px;
-
     color: var(--verde-escuro);
 }
-
 .contato p{
-
     margin-bottom: 20px;
 }
 
 .contato ul{
-
     list-style: none;
-
     line-height: 2;
 }
 /* Benefícios */
@@ -429,69 +399,47 @@ header{
         var(--verde),
         var(--verde-escuro)
     );
-
     color:white;
-
     display:flex;
-
     justify-content:space-around;
-
     padding:40px;
-
     margin:50px;
     border-radius:20px;
 }
-
 .beneficios div{
     border-right:1px solid rgba(255,255,255,.3);
     padding-right:30px;
 }.beneficios div:last-child{
     border-right:none;
 }
-
 /* Benefícios - Responsividade */
 @media(max-width:768px){
-
     .beneficios{
         flex-direction:column;
         gap:30px;
         text-align:center;
     }
-
 }
 /* ANIMAÇÃO DE ENTRADA */
 .fade-in{
-
     animation: aparecer 0.8s ease;
 }
-
 /* ANIMAÇÃO */
 @keyframes aparecer{
-
     from{
-
         opacity: 0;
-
         transform: translateY(20px);
     }
-
     to{
-
         opacity: 1;
-
         transform: translateY(0);
-
         transform: scale(0.98);
     }
 }
-
 /* SAÍDA DA PÁGINA */
 .fade-out{
-
     opacity: 0;
-
     transform: translateY(-20px);
-
     transition: 0.5s ease;
 }
 /*github-link*/
