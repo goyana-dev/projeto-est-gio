@@ -1,37 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área de administrador</title>
-    <link rel="stylesheet" href="CSS(ADMIN)/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta charset="UTF-8">
+<title>Login / Cadastro</title>
+  <link rel="stylesheet" href="CSS(ADMIN)/admin.css">
+
 </head>
 <body>
 
-    <main class="container">
-        <h1>CADASTRE-SE</h1>
+<h2>Login / Cadastro</h2>
 
-        <label for="usuario">Usuário</label>
-        <input type="text" id="usuario" placeholder="Digite o nome de usuário">
+<input id="usuario" placeholder="Usuário"><br>
+<input id="email" type="email" placeholder="E-mail"><br>
+<input id="senha" type="password" placeholder="Senha"><br>
 
-        <label for="senha">Senha</label>
-        <div class="senhabox">
-            <input type="password" id="senha" placeholder="Digite a senha">
-            <button type="button" onclick="MostrarSenha()" class="btn-senha">
-                <i class="fa-solid fa-eye-slash" id="iconeSenha"></i>
-            </button>
-        </div>
+<button onclick="cadastrar()">Entrar / Cadastrar</button>
 
-        <button onclick="cadastrar()">
-            Cadastrar
-        </button>
+<br><br>
+<a href="paginas/reset.html">Esqueci minha senha</a>
 
-        <p id="mensagem"></p>
-    </main>
-
-    <script src="JS(ADMIN)/admin.js"></script>
-    
-    <script type="module" src="bd/firebase.js"></script>
-
+<p id="mensagem"></p>
+<script type="module" src="JS(ADMIN)/admin.js"></script>
+<script type="module" src="bd/firebase.js"></script>
+</body>
 </html>

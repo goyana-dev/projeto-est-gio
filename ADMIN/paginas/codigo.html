@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificar Código de Segurança</title>
+    <link rel="stylesheet" href="../CSS(ADMIN)/admin.css">
+    <style>
+        .box { background: rgba(32, 58, 31, 0.85); padding: 30px; border-radius: 10px; width: 340px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; outline: none; font-size: 16px; background-color: #fff; color: #333 !important; text-align: center; }
+        #mensagemVerificacao { margin-top: 15px; text-align: center; font-size: 15px; font-weight: bold; }
+        p { color: #FFF1CA; margin-bottom: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>Confirmar Código</h1>
+    <p>Insira o código de 6 dígitos enviado por e-mail e defina a sua nova senha.</p>
+    
+    <input type="hidden" id="emailEscondido">
+    <input type="text" id="codigoInput" placeholder="Código (6 dígitos)" maxlength="6">
+    <input type="password" id="novaSenhaInput" placeholder="Nova senha">
+    
+    <button onclick="confirmarTrocaSenha()">Atualizar Senha</button>
+    
+    <div id="mensagemVerificacao"></div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getDatabase, ref, get, child, remove, update } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDY0MUFqLNdikiBYeIlPPEYvCl-1AOkTh4",
+        authDomain: "projeto-estagio-6be49.firebaseapp.com",
+        projectId: "projeto-estagio-6be49",
+        storageBucket: "projeto-estagio-6be49.firebasestorage.app",
+        messagingSenderId: "163566937029",
+        appId: "1:163566937029:web:a3da954efaab039ef261ac"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailUsuario = urlParams.get('email');
+    if (emailUsuario) {
+        document.getElementById("emailEscondido").value = emailUsuario;
+    }
+
+    window.confirmarTrocaSenha = async function() {
+        const email = document.getElementById("emailEscondido").value;
+        const codigoDigitado = document.getElementById("codigoInput").value.trim();
+        const novaSenha = document.getElementById("novaSenhaInput").value;
+        const mensagem = document.getElementById("mensagemVerificacao");
+
+        if (!codigoDigitado || !novaSenha) {
+            mensagem.innerText = "Preencha o código e a nova senha.";
+            mensagem.style.color = "#ffffff";
+            mensagem.style.backgroundColor = "#b32424";
+            mensagem.style.padding = "6px";
+            mensagem.style.borderRadius = "7px";
+            return;
+        }
+
+        const emailChave = email.replace(/\./g, ',');
+
+        try {
+            const dbRef = ref(database);
+            const snapshot = await get(child(dbRef, `recuperacoes/${emailChave}`));
+
+            if (snapshot.exists()) {
+                const dadosRecuperacao = snapshot.val();
+
+                if (dadosRecuperacao.codigo === codigoDigitado) {
+                    
+                    // Procura o UID do Administrador correspondente ao email
+                    const adminSnapshot = await get(child(dbRef, "administradores"));
+                    let userUid = null;
+
+                    if (adminSnapshot.exists()) {
+                        const admins = adminSnapshot.val();
+                        for (let uid in admins) {
+                            if (admins[uid].email === email) {
+                                userUid = uid;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Atualiza a nova senha na sua tabela de administradores
+                    if (userUid) {
+                        await update(ref(database, `administradores/${userUid}`), {
+                            senha: novaSenha
+                        });
+                    }
+                    
+                    // Limpa o token para segurança
+                    await remove(ref(database, `recuperacoes/${emailChave}`));
+                    
+                    mensagem.innerText = "Senha alterada com sucesso! A redirecionar...";
+                    mensagem.style.color = "#D28F01";
+                    mensagem.style.backgroundColor = "#2D4F2B";
+                    mensagem.style.padding = "6px";
+                    mensagem.style.borderRadius = "7px";
+                    
+                    setTimeout(() => {
+                        window.location.href = "../admin.html";
+                    }, 2000);
+                    
+                } else {
+                    mensagem.innerText = "Código incorreto.";
+                    mensagem.style.color = "#ffffff";
+                    mensagem.style.backgroundColor = "#b32424";
+                    mensagem.style.padding = "6px";
+                    mensagem.style.borderRadius = "7px";
+                }
+            } else {
+                mensagem.innerText = "Código expirado ou inexistente.";
+                mensagem.style.color = "#ffffff";
+                mensagem.style.backgroundColor = "#b32424";
+                mensagem.style.padding = "6px";
+                mensagem.style.borderRadius = "7px";
+            }
+        } catch (error) {
+            console.error(error);
+            mensagem.innerText = "Erro ao validar operação.";
+        }
+    };
+</script>
+</body>
+</html>

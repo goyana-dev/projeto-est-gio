@@ -1,28 +1,22 @@
+// bd/firebase.js
 // ==========================================
 // 1. IMPORTAÇÕES DOS MÓDULOS DO FIREBASE
 // ==========================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-
-// Importações do Firebase Authentication
-import { 
-    getAuth, 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword 
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
-
-// Importações do Banco de Dados Realtime (Database)
-import { 
-    getDatabase, 
-    ref, 
-    set, 
-    get, 
-    child, 
-    update 
+import {
+    getDatabase,
+    ref,
+    set
 } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
 
 // ==========================================
-// 2. CONFIGURAÇÃO E INICIALIZAÇÃO
+// 2. CONFIGURAÇÃO DO FIREBASE
 // ==========================================
 const firebaseConfig = {
     apiKey: "AIzaSyDY0MUFqLNdikiBYeIlPPEYvCl-1AOkTh4",
@@ -34,133 +28,160 @@ const firebaseConfig = {
     measurementId: "G-P455NRXN24"
 };
 
-// Inicializa os serviços passando a configuração do app
+// ==========================================
+// 3. INICIALIZAÇÃO DOS SERVIÇOS
+// ==========================================
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
 // ==========================================
-// 3. FUNÇÕES DE AUTENTICAÇÃO E BANCO DE DADOS
+// 4. FUNÇÃO DE CADASTRO / LOGIN (INTACTA)
 // ==========================================
-
-// Função global para cadastrar o usuário
-window.cadastrar = async function() {
-    // Captura o nome de usuário simples digitado no HTML
-    const usuarioSimples = document.getElementById("usuario").value.trim();
+window.cadastrar = async function () {
+    const usuario = document.getElementById("usuario").value.trim();
+    const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("senha").value;
     const mensagem = document.getElementById("mensagem");
 
-    // Validação simples antes de enviar para o servidor
-    if (!usuarioSimples || !senha) {
-        if (mensagem) {
-            mensagem.innerText = "Por favor, preencha o usuário e a senha!";
-            mensagem.style.color = "#ffffff";
-            mensagem.style.backgroundColor = "#2D4F2B";
-            mensagem.style.padding = "6px";
-            mensagem.style.borderRadius = "7px";
-        } else {
-            alert("Por favor, preencha o usuário e a senha!");
-        }
+    if (!usuario || !email || !senha) {
+        mensagem.innerText = "Preencha usuário, e-mail e senha.";
+        mensagem.style.color = "#ffffff";
+        mensagem.style.backgroundColor = "#b32424";
+        mensagem.style.padding = "6px";
+        mensagem.style.borderRadius = "7px";
         return;
     }
 
-    // TRUQUE DO SUFIXO: Transforma o usuário simples em formato de email para o Auth
-    const emailMascarado = `${usuarioSimples}@portal.local`;
-
     try {
-        // 1. Tenta criar a credencial de acesso na aba Authentication
-        const userCredential = await createUserWithEmailAndPassword(auth, emailMascarado, senha);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
         const user = userCredential.user;
-        
-        // 2. Salva o Usuário e a Senha em texto comum no Realtime Database
-        // Ele cria um nó 'administradores/ID_DO_USUARIO' com as informações de cadastro
-        await set(ref(database, 'administradores/' + user.uid), {
-            usuario: usuarioSimples,
-            senha: senha,
-            emailCriado: emailMascarado,
+
+        await set(ref(database, "administradores/" + user.uid), {
+            usuario: usuario,
+            email: email,
+            uid: user.uid,
             dataCadastro: new Date().toLocaleString("pt-BR")
         });
 
-        // Mensagem de sucesso estilizada na tela
-        if (mensagem) {
-            mensagem.innerText = `Usuário ${usuarioSimples} cadastrado com sucesso!`;
-            mensagem.style.color = "#D28F01";
-            mensagem.style.backgroundColor = "#2D4F2B";
-            mensagem.style.padding = "6px";
-            mensagem.style.borderRadius = "7px";
-        } else {
-            alert(`Usuário ${usuarioSimples} criado e salvo com sucesso!`);
-        }
+        mensagem.innerText = `Usuário ${usuario} cadastrado com sucesso!`;
+        mensagem.style.color = "#D28F01";
+        mensagem.style.backgroundColor = "#2D4F2B";
+        mensagem.style.padding = "6px";
+        mensagem.style.borderRadius = "7px";
 
-        // Limpa os campos após o sucesso
         document.getElementById("usuario").value = "";
+        document.getElementById("email").value = "";
         document.getElementById("senha").value = "";
 
-        // Redireciona para o index.html após o cadastro bem-sucedido
-        setTimeout(() => {
-            window.location.href = "../../index.html";
-        }, 2000); // Aguarda 2 segundos para o usuário ver a mensagem de sucesso
+        setTimeout(() => { window.location.href = "../../index.html"; }, 2000);
 
     } catch (error) {
-        console.error("Erro ao cadastrar e salvar:", error);
-        
-        // Se o usuário já existe, tenta fazer login em vez de mostrar erro
+        console.log(error);
+
         if (error.code === "auth/email-already-in-use") {
             try {
-                // Tenta fazer login com as credenciais fornecidas
-                const loginCredential = await signInWithEmailAndPassword(auth, emailMascarado, senha);
-                
-                // Se conseguiu fazer login, mostra mensagem de sucesso
-                if (mensagem) {
-                    mensagem.innerText = `Bem-vindo ${usuarioSimples}! Acessando sua conta...`;
-                    mensagem.style.color = "#D28F01";
-                    mensagem.style.backgroundColor = "#2D4F2B";
-                    mensagem.style.padding = "6px";
-                    mensagem.style.borderRadius = "7px";
-                } else {
-                    alert(`Bem-vindo ${usuarioSimples}!`);
-                }
+                await signInWithEmailAndPassword(auth, email, senha);
+                mensagem.innerText = "Login realizado com sucesso!";
+                mensagem.style.color = "#D28F01";
+                mensagem.style.backgroundColor = "#2D4F2B";
+                mensagem.style.padding = "6px";
+                mensagem.style.borderRadius = "7px";
 
-                // Limpa os campos
-                document.getElementById("usuario").value = "";
-                document.getElementById("senha").value = "";
-
-                // Redireciona para o index.html
-                setTimeout(() => {
-                    window.location.href = "../../index.html";
-                }, 2000);
-
+                setTimeout(() => { window.location.href = "../../index.html"; }, 2000);
             } catch (loginError) {
-                // Se o login falhar (senha errada), mostra erro
-                console.error("Erro ao fazer login:", loginError);
-                if (mensagem) {
-                    if (loginError.code === "auth/wrong-password" || loginError.code === "auth/invalid-credential") {
-                        mensagem.innerText = "Usuário existe, mas a senha está incorreta!";
-                    } else {
-                        mensagem.innerText = `Erro ao acessar: ${loginError.message}`;
-                    }
-                    mensagem.style.color = "#ffffff";
-                    mensagem.style.backgroundColor = "#b32424";
-                    mensagem.style.padding = "6px";
-                    mensagem.style.borderRadius = "7px";
+                if (loginError.code === "auth/wrong-password" || loginError.code === "auth/invalid-credential") {
+                    mensagem.innerText = "E-mail existe, mas a senha está incorreta.";
                 } else {
-                    alert(`Erro: ${loginError.message}`);
+                    mensagem.innerText = loginError.message;
                 }
+                mensagem.style.color = "#ffffff";
+                mensagem.style.backgroundColor = "#b32424";
+                mensagem.style.padding = "6px";
+                mensagem.style.borderRadius = "7px";
             }
-        } else if (mensagem) {
-            // Tratamentos amigáveis de mensagens de erro na tela para outros erros
-            if (error.code === "auth/weak-password" || error.message.includes("weak")) {
-                mensagem.innerText = "A senha deve ter pelo menos 6 caracteres";
-            } else {
-                mensagem.innerText = `Erro: ${error.message}`;
-            }
+        } else if (error.code === "auth/weak-password") {
+            mensagem.innerText = "A senha deve possuir pelo menos 6 caracteres.";
+            mensagem.style.color = "#ffffff";
+            mensagem.style.backgroundColor = "#b32424";
+            mensagem.style.padding = "6px";
+            mensagem.style.borderRadius = "7px";
+        } else if (error.code === "auth/invalid-email") {
+            mensagem.innerText = "Digite um e-mail válido.";
             mensagem.style.color = "#ffffff";
             mensagem.style.backgroundColor = "#b32424";
             mensagem.style.padding = "6px";
             mensagem.style.borderRadius = "7px";
         } else {
-            alert(`Erro: ${error.message}`);
+            mensagem.innerText = "Erro: " + error.message;
+            mensagem.style.color = "#ffffff";
+            mensagem.style.backgroundColor = "#b32424";
+            mensagem.style.padding = "6px";
+            mensagem.style.borderRadius = "7px";
         }
     }
 };
+
+// ==========================================
+// 5. FUNÇÃO DE RECUPERAÇÃO DE SENHA
+// ==========================================
+window.recuperarSenha = async function () {
+    const email = document.getElementById("emailRecuperacao").value.trim();
+    const mensagem = document.getElementById("mensagem");
+
+    if (!email) {
+        mensagem.innerText = "Digite seu e-mail para recuperar a senha.";
+        aplicarEstiloErro(mensagem);
+        return;
+    }
+
+    try {
+        const codigoVerificacao = Math.floor(100000 + Math.random() * 900000).toString();
+        const emailChave = email.replace(/\./g, ','); 
+        
+        await set(ref(database, 'recuperacoes/' + emailChave), {
+            codigo: codigoVerificacao,
+            timestamp: Date.now()
+        });
+
+        const response = await fetch("/api/enviar-codigo", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, codigo: codigoVerificacao })
+        });
+
+        const dados = await response.json();
+
+        if (response.ok) {
+            mensagem.innerText = "Código enviado com sucesso!";
+            aplicarEstiloSucesso(mensagem);
+
+            // Ajustado para redirecionar corretamente para codigo.html
+            setTimeout(() => {
+                window.location.href = "codigo.html?email=" + encodeURIComponent(email);
+            }, 2000);
+        } else {
+            throw new Error(dados.error || "Erro ao enviar e-mail.");
+        }
+
+    } catch (error) {
+        console.error(error);
+        mensagem.innerText = error.message;
+        aplicarEstiloErro(mensagem);
+    }
+};
+
+function aplicarEstiloErro(elemento) {
+    elemento.style.color = "#ffffff";
+    elemento.style.backgroundColor = "#b32424";
+    elemento.style.padding = "6px";
+    elemento.style.borderRadius = "7px";
+}
+
+function aplicarEstiloSucesso(elemento) {
+    elemento.style.color = "#D28F01";
+    elemento.style.backgroundColor = "#2D4F2B";
+    elemento.style.padding = "6px";
+    elemento.style.borderRadius = "7px";
+}
